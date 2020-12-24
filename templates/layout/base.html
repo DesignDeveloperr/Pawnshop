@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/tailwind.min.css' %}">
+</head>
+<body>
+    {% if auth %}
+        <header>
+            <div class="container mx-auto">
+                <ul class="flex inline justify-center my-4 uppercase font-medium text-gray-800">
+                    <li class="mx-8 my-auto hover:text-blue-800"><a href="{% url 'profile' %}">Профиль</a></li>
+                    <li class="mx-8 my-auto hover:text-blue-800"><a href="">Каталог</a></li>
+                    <li class="mx-8 my-auto hover:text-blue-800"><a href="">Продажа</a></li>
+                    <li><a href="{% url 'logout' %}"><button class="bg-red-400 px-8 py-2 text-white font-medium rounded focus:outline-none hover:bg-red-500">Выйти</button></a></li>
+                </ul>
+            </div>
+        </header>
+    {% endif %}
+
+    <main>
+        <div class="container mx-auto">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    {% csrf_token %}
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/vue.js' %}"></script>
+    {% block js %}{% endblock %}
+</body>
+</html>

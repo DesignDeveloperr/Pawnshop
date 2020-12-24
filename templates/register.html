@@ -1,0 +1,25 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="grid grid-cols-12">
+        <div class="col-span-4 col-start-5 mt-40 bg-blue-200 p-4 rounded shadow" id="register_form">
+            <h1 class="text-center text-2xl font-medium text-gray-800">Регистрация</h1>
+            <p class="text-red-600">${ message }}</p>
+            <div class="grid">
+                <input v-model="name" type="text" placeholder="Имя" class="my-4 p-2 rounded focus:outline-none focus:ring focus:border-blue-300 shadow-lg">
+                <input v-model="surname" type="text" placeholder="Фамилия" class="mb-4 p-2 rounded focus:outline-none focus:ring focus:border-blue-300 shadow-lg">
+                <input v-model="email" type="email" placeholder="E-Mail" class="mb-4 p-2 rounded focus:outline-none focus:ring focus:border-blue-300 shadow-lg">
+                <input v-model="password" type="password" placeholder="Пароль" class="mb-4 p-2 rounded focus:outline-none focus:ring focus:border-blue-300 shadow-lg">
+                <input v-model="password_reply" type="password" placeholder="Повтор пароля" class="mb-4 p-2 rounded focus:outline-none focus:ring focus:border-blue-300 shadow-lg">
+                <div class="flex">
+                    <button v-on:click="submit" class="bg-blue-400 p-2 text-white rounded shadow focus:outline-none hover:bg-blue-500 w-2/4 mr-4">Зарегистрироваться</button>
+                    <a href="{% url 'login' %}" class="w-2/4"><button class="bg-blue-400 w-full p-2 text-white rounded shadow focus:outline-none hover:bg-blue-500">Назад</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/register.js' %}"></script>
+{% endblock %}

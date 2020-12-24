@@ -1,0 +1,22 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="grid grid-cols-12">
+        <div class="col-span-4 col-start-5 mt-40 bg-blue-200 p-4 rounded shadow" id="login_form">
+            <h1 class="text-center text-2xl font-medium text-gray-800">Войти</h1>
+            <p class="text-red-600">${ message }}</p>
+            <div class="grid">
+                <input v-model="email" type="email" placeholder="E-Mail" class="my-4 p-2 rounded focus:outline-none focus:ring focus:border-blue-300 shadow-lg">
+                <input v-model="password" type="password" placeholder="Пароль" class="mb-4 p-2 rounded focus:outline-none focus:ring focus:border-blue-300 shadow-lg">
+                <div class="flex">
+                    <button v-on:click="submit" class="bg-blue-400 w-2/4 p-2 mr-4 text-white rounded shadow focus:outline-none hover:bg-blue-500">Войти</button>
+                    <a href="{% url 'register' %}" class="w-2/4"><button class="bg-blue-400 w-full p-2 text-white rounded shadow focus:outline-none hover:bg-blue-500">Регистрация</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/login.js' %}"></script>
+{% endblock %}

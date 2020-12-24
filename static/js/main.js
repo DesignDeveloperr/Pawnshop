@@ -1,0 +1,1 @@
+const csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value
