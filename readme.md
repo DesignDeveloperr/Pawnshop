@@ -12,3 +12,5 @@
 1. `source venv/Scripts/activate`
 2. `./manage.py runserver 8000`
 3. Открыть http://localhost:8000
+
+![db](db.png)
