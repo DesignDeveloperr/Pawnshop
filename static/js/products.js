@@ -29,7 +29,6 @@ Vue.component('product', {
                     alert('Ошибка')
                 }
                 await catalog.getProducts()
-                this.text = 'Товар добавлен в корзину'
             } else {
                 alert('Товар уже добавлен в корзину')
             }
