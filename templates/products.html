@@ -1,0 +1,28 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="grid grid-cols-12 gap-4" id="products">
+        <div class="col-span-3 mt-10 bg-blue-200 p-4 rounded shadow">
+            <input v-on:change="getProducts" v-model="search" placeholder="Поиск..." type="text" class="p-2 rounded focus:outline-none focus:ring focus:border-blue-300 shadow-lg w-full">
+            <h1 class="text-center font-medium text-gray-800 my-2">Сортировать</h1>
+            <input v-on:change="getProducts" v-model="sorted" value="name" type="radio" name="sort" id="sort_name">
+            <label for="sort_name">По имени</label><br>
+            <input v-on:change="getProducts" v-model="sorted" value="price" type="radio" name="sort" id="sort_price">
+            <label for="sort_price">По Цене</label><br>
+        </div>
+
+        <div class="col-span-6 mt-10 bg-blue-200 p-4 rounded shadow">
+            <h1 class="text-center text-2xl font-medium text-gray-800">Каталог</h1>
+            <product v-for="product in products" v-bind:name="product.name" v-bind:description="product.description" v-bind:price="product.price" v-bind:image="product.image" v-bind:user="product.user" v-bind:id="product.id" v-bind:added="product.added"></product>
+        </div>
+
+        <div class="col-span-3 mt-10 bg-blue-200 p-4 rounded shadow">
+            <h1 class="text-center text-2xl font-medium text-gray-800">Корзина</h1>
+            <cart v-for="c in cart" v-bind:name="c.name" v-bind:price="c.price" v-bind:id="c.id"></cart>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/products.js' %}"></script>
+{% endblock %}

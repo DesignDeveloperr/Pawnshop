@@ -35,5 +35,6 @@ def profile_page(request: HttpRequest):
                 'name': _get_user_from_session(request).name,
                 'surname': _get_user_from_session(request).surname,
                 'email': _get_user_from_session(request).email,
-                'count': Products.objects.filter(user=_get_user_from_session(request)).count()
+                'count': Products.objects.filter(user=_get_user_from_session(request)).count(),
+                'date': _get_user_from_session(request).date
             })

@@ -8,7 +8,6 @@ class Products(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название')
     description = models.TextField(verbose_name='Описание')
     price = models.IntegerField(verbose_name='Цена')
-    number = models.IntegerField(verbose_name='Номер')
     image = models.ImageField(upload_to='products/', verbose_name='Изображение')
 
     class Meta:

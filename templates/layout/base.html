@@ -12,8 +12,8 @@
             <div class="container mx-auto">
                 <ul class="flex inline justify-center my-4 uppercase font-medium text-gray-800">
                     <li class="mx-8 my-auto hover:text-blue-800"><a href="{% url 'profile' %}">Профиль</a></li>
-                    <li class="mx-8 my-auto hover:text-blue-800"><a href="">Каталог</a></li>
-                    <li class="mx-8 my-auto hover:text-blue-800"><a href="">Продажа</a></li>
+                    <li class="mx-8 my-auto hover:text-blue-800"><a href="{% url 'products' %}">Каталог</a></li>
+                    <li class="mx-8 my-auto hover:text-blue-800"><a href="{% url 'sell' %}">Продажа</a></li>
                     <li><a href="{% url 'logout' %}"><button class="bg-red-400 px-8 py-2 text-white font-medium rounded focus:outline-none hover:bg-red-500">Выйти</button></a></li>
                 </ul>
             </div>
