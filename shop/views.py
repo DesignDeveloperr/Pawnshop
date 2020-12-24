@@ -20,3 +20,5 @@ def products_page(request: HttpRequest):
     if _user_is_auth(request):
         if request.method == 'GET':
             return render(request, 'products.html', {'auth': _user_is_auth(request)})
+    else:
+        return redirect('login')

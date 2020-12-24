@@ -16,10 +16,13 @@ def _get_user_from_session(request: HttpRequest) -> Users:
 
 def _user_is_auth(request: HttpRequest) -> bool:
     """Checking for the relevance of data in the session"""
-    if request.session.get('email', False):
-        if _get_user_from_session(request).password == request.session['password']:
-            return True
-    else:
+    try:
+        if request.session.get('email', False):
+            if _get_user_from_session(request).password == request.session['password']:
+                return True
+        else:
+            return False
+    except ObjectDoesNotExist:
         return False
 
 
