@@ -1,5 +1,6 @@
 # Проект базы данных ломбарда
 
+![Python language](https://img.shields.io/badge/python%20-%2314354C.svg?&style=for-the-badge&logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/django%20-%23092E20.svg?&style=for-the-badge&logo=django&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker%20-%230db7ed.svg?&style=for-the-badge&logo=docker&logoColor=white)
 ![Docker](https://img.shields.io/badge/vue.js%20-%233fb27f.svg?&style=for-the-badge&logo=vue.js&logoColor=white)
