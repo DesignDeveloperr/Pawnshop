@@ -43,7 +43,7 @@ Vue.component('product', {
     mounted: function () {
         this.added ? this.text = 'Товар добавлен в корзину' : this.text = 'Добавить в корзину'
     },
-    update: function () {
+    updated: function () {
         this.added ? this.text = 'Товар добавлен в корзину' : this.text = 'Добавить в корзину'
     }
 })
