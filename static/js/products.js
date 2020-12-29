@@ -5,28 +5,28 @@ Vue.component('product', {
             text: 'Добавить в корзину'
         }
     },
-    template: '<div class="mt-4 bg-blue-100 p-2 rounded shadow">\n' +
-        '                <div class="flex">\n' +
-        '                    <img class="shadow object-fill h-32 rounded" v-bind:src="image" alt="">\n' +
-        '                    <div class="block my-auto ml-8">\n' +
-        '                        <p class="text-gray-600 font-medium">{{ name }}</p>\n' +
-        '                        <p class="text-gray-600">{{ description }}</p>\n' +
-        '                        <p class="text-gray-600">Цена: {{ price }} рублей</p>\n' +
-        '                        <p class="text-gray-600">Добавил: {{ user }}</p>\n' +
-        '                    </div>\n' +
-        '                </div>\n' +
-        '                <button v-bind:class="buttonColor" v-on:click="add_to_cart" class="mt-2 focus:outline-none py-2 w-full rounded text-white">{{ text }}</button>\n' +
-        '            </div>',
+    template: `<div class="mt-4 bg-blue-100 p-2 rounded shadow">
+                    <div class="flex">
+                    <img class="shadow object-fill h-32 rounded" v-bind:src="image" alt="">
+                        <div class="block my-auto ml-8">
+                            <p class="text-gray-600 font-medium">{{ name }}</p>
+                            <p class="text-gray-600">{{ description }}</p>
+                            <p class="text-gray-600">Цена: {{ price }} рублей</p>
+                            <p class="text-gray-600">Добавил: {{ user }}</p>
+                        </div>
+                    </div>
+                    <button v-bind:class="buttonColor" v-on:click="add_to_cart" class="mt-2 focus:outline-none py-2 w-full rounded text-white">{{ text }}</button>
+               </div>`,
     methods: {
         add_to_cart: async function() {
             if (!this.added) {
-                let response = await fetch('/cart/add/' + this.id + '/')
+                let response = await fetch(`/cart/add/${this.id}/`)
                 if (response.ok) {
                     let result = await response.json()
                     result.code === 'success' ? this.added = true : alert(result.msg)
                     await catalog.getCart()
                 } else {
-                    alert('Ошибка')
+                    alert(error_message)
                 }
                 await catalog.getProducts()
             } else {
@@ -49,13 +49,13 @@ Vue.component('product', {
 
 Vue.component('cart', {
     props: ['name', 'price', 'id'],
-    template: '<div class="p-2 bg-blue-100 rounded shadow mt-4 flex">\n' +
-        '                <p class="text-gray-800 my-auto">{{ name }}. {{ price }} рублей</p>\n' +
-        '                <button v-on:click="remove_from_cart" class="px-2 bg-red-500 rounded-full text-white shadow ml-auto focus:outline-none">X</button>\n' +
-        '            </div>',
+    template: `<div class="p-2 bg-blue-100 rounded shadow mt-4 flex">
+                    <p class="text-gray-800 my-auto">{{ name }}. {{ price }} рублей</p>
+                    <button v-on:click="remove_from_cart" class="px-2 bg-red-500 rounded-full text-white shadow ml-auto focus:outline-none">X</button>
+               </div>`,
     methods: {
         remove_from_cart: async function() {
-            let response = await fetch('/cart/remove/' + this.id + '/')
+            let response = await fetch(`/cart/remove/${this.id}/`)
             if (response.ok) {
                 let result = await response.json()
                 result.code === 'success' ? await catalog.getProducts() : alert(result.msg)
@@ -76,7 +76,7 @@ const catalog = new Vue({
         cart: []
     },
     mounted: async function() {
-        this.products = await (await fetch('/products/' + this.getSearch() + '/' + this.getSort() + '/')).json()
+        this.products = await (await fetch(`/products/${this.getSearch()}/${this.getSort()}/`)).json()
         this.cart = await (await fetch('/cart/')).json()
     },
     methods: {
@@ -87,7 +87,7 @@ const catalog = new Vue({
             return this.sorted === '' ? 'all' : this.sorted
         },
         getProducts: async function () {
-            this.products = await (await fetch('/products/' + this.getSearch() + '/' + this.getSort() + '/')).json()
+            this.products = await (await fetch(`/products/${this.getSearch()}/${this.getSort()}/`)).json()
             await this.getCart()
         },
         getCart: async function() {

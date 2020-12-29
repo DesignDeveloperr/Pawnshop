@@ -24,9 +24,9 @@ const sell = new Vue({
                 let result = await response.json()
                 result.code === 'success' ? this.reset_form(result.msg) : this.error_text(result.msg)
             } else if (response.status === 403) {
-                this.error_text('Ошибка проверки CSRF токена')
+                this.error_text(csrf_error)
             } else {
-                this.error_text('Ошибка')
+                this.error_text(error_message)
             }
         },
         reset_form: function (message) {

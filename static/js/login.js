@@ -21,9 +21,9 @@ const login = new Vue({
                 return result.code === 'success' ? location.reload() : this.message = result.msg
             }
             else if (response.status === 403) {
-                this.message = 'Ошибка проверки CSRF токена'
+                this.message = csrf_error
             } else {
-                this.message = 'Ошибка'
+                this.message = error_message
             }
         }
     }
